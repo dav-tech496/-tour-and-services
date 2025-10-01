@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tourist Ticket selling</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f4f6f9;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header/Nav */
+    header {
+      text-align: center;
+      padding: 30px 20px;
+      background: rgb(89, 89, 226);
+      color: white;
+    }
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
+    header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    /* Blue Section under nav */
+    .blue-section {
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(135deg, #36d1dc, #5b86e5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    /* Destination Cards */
+    .destinations {
+      display: grid;
+      gap: 20px;
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .card {
+      position: relative;
+      border-radius: 20px;
+      background: white;
+      overflow: hidden;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Image in card */
+    .card-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .card-image::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.25); /* dark overlay */
+    }
+
+    /* Ngwe Saung card */
+    .ngwe-saung .card-image {
+      background-image: url("./images/ngwesaung.jfif");
+    }
+
+    /* Chaung Thar card */
+    .chaung-thar .card-image {
+      background-image: url("./images/chaung thar.jpg");
+    }
+
+    /* Inlay Lake card */
+    .inlay .card-image {
+      background-image: url("./images/inle\ lake.jfif");
+    }
+
+    .bagan .card-image {
+      background-image: url("./images/bagan.jpg");
+    }
+
+    .taunggyi .card-image {
+      background-image: url("./images/taung_gyi.jfif");
+    }
+
+    .mandalay .card-image {
+      background-image: url("./images/mandalay.jfif");
+    }
+
+    .bagan .card-image {
+     background-image: url("./bagan_img/sunset.jpg");
+     }
+
+
+
+
+    /* Card content with glass effect */
+
+    .bagan .card-image {
+  background-image: url("./bagan_img/balloon.jpg");
+  height: 200px; /* same as other cards */
+  background-size: cover;
+  background-position: center;
+}
+
+.mandalay .card-image {
+  background-image: url("./images/mandalay.jfif");
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.shwe-nagar .card-image {
+  background-image: url("./images/resort.jfif"); /* small image for the card */
+  height: 200px; /* same height as other cards */
+  background-size: cover;
+  background-position: center;
+}
+
+    .card-content {
+      padding: 20px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+    .card-content h2 {
+      margin-bottom: 10px;
+      font-size: 1.6rem;
+      color: #222;
+    }
+    .card-content p {
+      margin-bottom: 15px;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* Stylish Button */
+    .card-content a {
+      display: inline-block;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #36d1dc, #5b86e5);
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .card-content a:hover {
+      background: linear-gradient(135deg, #5b86e5, #36d1dc);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+    }
+
+    .card.unavailable {
+  opacity: 0.6;
+  position: relative;
+  pointer-events: none; /* disable clicking */
+}
+
+.card.unavailable::after {
+  content: "Not Available";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+  /* Hot/Popular badge */
+.card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(135deg, #ff512f, #dd2476); /* red/pink fire tone */
+  color: white;
+  font-size: 0.85rem;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  animation: pulse 1.5s infinite;
+}
+
+/* Fire emoji bounce */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+
+
+    /* Footer
+    footer {
+      text-align: center;
+      margin-top: auto;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    .card.bagan .card-image {
+      background: url('./images/bagan.jpg') center/cover no-repeat;
+      height: 180px;
+      border-radius: 12px 12px 0 0;
+    } */
+
+    .footer {
+  background: #222;   /* dark background */
+  color: #fff;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+.footer p {
+  margin: 0 0 10px;
+  opacity: 0.8;
+}
+
+.footer-links a {
+  color: #36d1dc;     /* light aqua for links */
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tourism Ticket Booking</h1>
+    <p>Select your destination below</p>
+  </header>
+
+    <div class="destinations">
+    <!-- Ngwe Saung Card -->
+<div class="card ngwe-saung">
+  <div class="card-image">
+    <div class="card-badge">🔥 Popular</div>
+  </div>
+  <div class="card-content">
+    <h2>Ngwe Saung Beach</h2>
+    <p>Relax by the silver sands and calm waves</p>
+    <a href="ngwe_saung.html">View Prices</a>
+  </div>
+</div>
+
+<!-- Chaung Thar Card -->
+<div class="card chaung-thar">
+  <div class="card-image">
+    <div class="card-badge">🔥 Popular</div>
+  </div>
+  <div class="card-content">
+    <h2>Chaung Thar Beach</h2>
+    <p>Enjoy the lively atmosphere and golden sunsets</p>
+    <a href="chaung_thar.html">View Prices</a>
+  </div>
+</div>
+
+<!-- Taunggyi Trip Card -->
+<div class="card taunggyi">
+  <div class="card-image">
+    <div class="card-badge">🎈 Festival</div>
+  </div>
+  <div class="card-content">
+    <h2>တောင်ကြီး၊အင်းလေး၊ပင်းတယ၊ရွာငံ၊ကလော</h2>
+    <p>တန်ဆောင်တိုင်မီးပုံးပျံပွဲတော် + ခရီးစဉ်</p>
+    <a href="taunggyi_trip.html">View Details</a>
+  </div>
+</div>
+
+ <!-- Bagan Tour Card -->
+<div class="card bagan">
+  <div class="card-image">
+    <div class="card-badge">🌄 Classic</div>
+  </div>
+  <div class="card-content">
+    <h2>ပုဂံ-‌ညောင်ဦး၊ပုပ္ပါး၊ပြည့်ငါးပြည့် ခရီးစဉ်</h2>
+    <p>🗓️ (၃၁.၁၀.၂၅) ညနေ (၄) နာရီထွက်မည်</p>
+    <a href="bagan_package.html">View Details</a>
+  </div>
+</div>
+
+
+<!-- Mandalay Trip Card -->
+<div class="card mandalay">
+  <div class="card-image">
+    <div class="card-badge">🏞️ Classic</div>
+  </div>
+  <div class="card-content">
+    <h2>မန္တလေး၊ပြင်ဦးလွင်၊ကျောက်ဆည် ခရီးစဉ်</h2>
+    <p>🗓️ (၃၁.၁၀.၂၅) ညနေ (၄) နာရီထွက်မည်</p>
+    <a href="mandalay_trip.html">View Details</a>
+  </div>
+</div>
+
+<!-- Shwe Nagar Resort Card -->
+<div class="card shwe-nagar">
+  <div class="card-image">
+    <div class="card-badge">🏖️ Resort</div>
+  </div>
+
+
+  <div class="card-content">
+    <h2>Shwe Nagar Resort (Ngwe Saung)</h2>
+    <p>🏔 တောင်တန်းတွေကိုကျော်လွန်ပြီး 🌊ပင်လယ်ကြီးဆီကို လည်လည်သွားမယ်😍</p>
+    <a href="shwe_nagar.html">View Details</a>
+  </div>
+</div>
+
+
+
+
+
+
+    <!-- Bagan Card -->
+    <div class="card bagan unavailable">
+      <div class="card-image"></div>
+      <div class="card-content">
+        <h2>Bagan Pagodas</h2>
+        <p>Discover the ancient temples and golden pagodas of Bagan</p>
+        <a href="bagan.html">View Prices</a>
+      </div>
+    </div>
+
+    <!-- Inlay Lake Card -->
+    <div class="card inlay unavailable">
+      <div class="card-image"></div>
+      <div class="card-content">
+        <h2>Inle Lake</h2>
+        <p>Experience the beauty of floating villages and serene waters</p>
+        <a href="inle.html">View Prices</a>
+     </div>
+    </div>
+
+  </div>
+
+
+
+
+  <!-- <footer>
+    © 2025 Tourist Tickets selling Myanmar. all right reserve 
+  </footer> -->
+
+  <!-- Footer -->
+<footer class="footer">
+  <p>&copy; 2025 Myanmar Travel Explorer. All Rights Reserved.</p>
+  <div class="footer-links">
+    <a href="./terms.html">စည်းမျဉ်းချက်များ</a> 
+  </div>
+</footer>
+
+</body>
+</html>
