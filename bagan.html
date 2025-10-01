@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bagan Tickets</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      position: relative;
+      text-align: center;
+      color: white;
+    }
+    header img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+    header .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+
+    /* Intro / Services */
+    .intro {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .intro h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #d4a017; /* golden color */
+    }
+    .intro p {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .service-box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .service-box:hover {
+      transform: translateY(-5px);
+    }
+    .service-box img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .service-box h3 {
+      margin: 0 0 10px;
+      color: #d4a017;
+    }
+    .service-box p {
+      font-size: 1rem;
+    }
+
+    /* Prices */
+    .prices {
+      display: grid;
+      gap: 20px;
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .price-box {
+      background: linear-gradient(135deg, #f9d423, #ff4e50);
+      color: white;
+      padding: 30px 25px;
+      border-radius: 20px;
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .price-box:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+    .price-box h3 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+    }
+    .price-box p {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+    .price-box .note {
+      font-size: 0.95rem;
+      font-weight: 400;
+      margin-top: 10px;
+      opacity: 0.85;
+    }
+
+    /* Contact Footer */
+    .contact-footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 40px;
+      border-radius: 12px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .contact-footer a {
+      display: inline-block;
+      margin: 10px 10px 0 10px;
+      padding: 12px 20px;
+      background: #d4a017;
+      color: white;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .contact-footer a:hover {
+      background: #b38f00;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src="./images/bagan.jpg" alt="Bagan Pagodas">
+    <div class="overlay">
+      <h1>Bagan Pagoda</h1>
+      <p>Explore the ancient city of temples in Myanmar</p>
+    </div>
+  </header>
+
+  <!-- Intro / Services -->
+  <section class="intro">
+    <h2>About Bagan</h2>
+    <p>Bagan is an ancient city with thousands of pagodas, temples, and stupas spread across a scenic plain. Ideal for history lovers and travelers seeking spiritual experiences.</p>
+    <div class="services">
+      <div class="service-box">
+        <img src="./bagan_img/sunset.jpg" alt="Sunset Pagodas">
+        <h3>Sunset Views</h3>
+        <p>Watch breathtaking sunsets over the pagoda plains.</p>
+      </div>
+      <div class="service-box">
+        <img src="./bagan_img/balloon.jpg" alt="Hot Air Balloon">
+        <h3>Hot Air Balloon</h3>
+        <p>See Bagan from above in a scenic balloon ride.</p>
+      </div>
+      <div class="service-box">
+        <img src="./bagan_img/food.jpg" alt="Local Food">
+        <h3>Local Cuisine</h3>
+        <p>Taste traditional Burmese dishes around the area.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prices -->
+  <section class="prices">
+    <div class="price-box">
+      <h3>Mon – Thu</h3>
+      <p>40,000 MMK</p>
+      <p class="note">Perfect for weekdays sightseeing</p>
+    </div>
+    <div class="price-box">
+      <h3>Fri – Sun</h3>
+      <p>50,000 MMK</p>
+      <p class="note">Popular weekend choice</p>
+    </div>
+    <div class="price-box">
+      <h3>Big Holidays</h3>
+      <p>60,000 MMK</p>
+      <p class="note">Special holiday rate</p>
+    </div>
+  </section>
+
+  <!-- Contact Footer -->
+  <div class="contact-footer">
+    <h2>Contact & Links</h2>
+    <p>Reach us on Viber for bookings:</p>
+    <a href="viber://chat?number=095004786">📞 095004786</a>
+    <br>
+    <a href="index.html">⬅ Back to Home</a>
+    <a href="terms.html">📄 Terms & Conditions</a>
+  </div>
+</body>
+</html>
